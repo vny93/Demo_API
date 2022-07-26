@@ -15,7 +15,5 @@ connection.connect(function (err){
     else
     console.log("connect success");
  })
-// connection.connect(function(err){
-//     if(err) console.log('Không thành công')
-// })
+ 
 module.exports = connection
