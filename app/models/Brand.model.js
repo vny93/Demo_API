@@ -1,0 +1,59 @@
+const db = require('../common/connect')
+class Brand {
+    constructor() {
+        this.mahang = Brand.mahang
+        this.tenhang = Brand.tenhang
+        this.email = Brand.email
+        this.sdt = Brand.sdt
+    }
+    //get list 
+    static get_all(result) {
+        db.query("select * from hangsanxuat ", function (err, Brand) {
+            if (err) {
+                result(err)
+                return
+            }
+            result(Brand)
+        })
+    }
+    //get by id
+    static getById(id, result) {
+        db.query("select * from hangsanxuat where mahang = ?", id, function (err, Brand) {
+            if (err || Brand.length == 0)
+                result(null)
+            else
+                result(Brand[0])
+        })
+    }
+    //add 
+    static create(data, result) {
+        db.query("insert into hangsanxuat set ?", data, function (err, Brand) {
+            if (err)
+                result(null)
+            else
+                result(data)
+        })
+    }
+    //update 
+    static update(data, result) {
+        db.query("update hangsanxuat set tenhang = ?, email = ?, sdt = ?"+
+        "where mahang = ?", [data.tenhang, data.email, data.sdt, data.mahang], function (err, Brand) {
+            if (err)
+                result(null)
+            else
+                result("Cập nhật thông tin thành công")
+        })
+    }
+
+    //delete
+    static remove(id, result) {
+        db.query("delete from hangsanxuat where mahang = ?", id, function (err, Brand) {
+            if (err)
+                result(null)
+            else
+                result("Xóa hãng sản xuất " + id + " thành công")
+        })
+    }
+}
+
+module.exports = Brand
