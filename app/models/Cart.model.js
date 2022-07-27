@@ -39,20 +39,41 @@ class Cart {
             if (err)
                 result(null)
             else
-                result(data)
+            var tt = ""
+                db.query("call getGiohangByTrangThai(?,?)", [tt,data.makh] ,function (err, Cart) {
+                    if (err) {
+                        result(err)
+                        return
+                    }
+                    result(Cart[0])
+                })
+          //  result(data)
         })
     }
+
+    //get gio hang trạng thái rỗng
+    static getCartByStatus(data, result) {
+        db.query("call getGiohangByTrangThai(?,?)", [data.trangthai,data.makh], function (err, Cart) {
+            if (err) {
+                result(err)
+                return
+            }
+            result(Cart[0])
+        })
+    }
+
+
     //update 
     static update(data, result) {
-        db.query("update giohang set ngaydat = ?, hotennguoinhan = ?, diachinguoinhan = ?, sdtnguoinhan = ?, emailnguoinhan = ?,"+
-        " ngaygiao = ?, tongtien = ?, trangthai = ?, manvduyet = ?, manvgiao = ?, makh = ? where magh = ?", [data.ngaydat, data.hotennguoinhan,
-            data.diachinguoinhan, data.sdtnguoinhan, data.emailnguoinhan, data.ngaygiao, data.tongtien, data.trangthai, data.manvduyet, 
+        db.query("update giohang set ngaydat = ?, hotennguoinhan = ?, diachinguoinhan = ?, sdtnguoinhan = ?, emailnguoinhan = ?," +
+            " ngaygiao = ?, tongtien = ?, trangthai = ?, manvduyet = ?, manvgiao = ?, makh = ? where magh = ?", [data.ngaydat, data.hotennguoinhan,
+            data.diachinguoinhan, data.sdtnguoinhan, data.emailnguoinhan, data.ngaygiao, data.tongtien, data.trangthai, data.manvduyet,
             data.manvgiao, data.makh, data.magh], function (err, Cart) {
-            if (err)
-                result(null)
-            else
-                result("Cập nhật thông tin thành công")
-        })
+                if (err)
+                    result(null)
+                else
+                    result("Cập nhật thông tin thành công")
+            })
     }
 
     //delete

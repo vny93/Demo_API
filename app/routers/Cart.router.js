@@ -5,6 +5,8 @@ module.exports = function(router){
 
   router.get('/v1/cart/detail', cartController.detail)
 
+  router.post('/v1/cart/status', cartController.getCartByStatus)
+
   router.post('/v1/cart/add',cartController.add)
 
   router.put('/v1/cart/update', cartController.update)
