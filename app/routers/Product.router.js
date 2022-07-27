@@ -18,7 +18,7 @@ module.exports = function(router){
         storage : storage
     })
 
-  router.get('/v1/product/open_image', productController.open_image)
+ // router.get('/v1/product/open_image', productController.open_image)
 
   router.get('/v1/product/list', productController.get_list)
 
