@@ -22,6 +22,17 @@ exports.detail = function (req, res) {
     })
 }
 
+exports.detailByTk = function (req, res) {
+    User.getByTk(req.body.tendangnhap, function (response) {
+        if(response){
+            res.send({ result: response })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
 
 exports.add = function (req, res) {
     User.create(req.body, function (response) {

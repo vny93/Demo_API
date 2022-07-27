@@ -22,7 +22,9 @@ module.exports = function(router){
 
   router.get('/v1/product/list', productController.get_list)
 
-  router.get('/v1/product/detail', productController.detail)
+ // router.post('/v1/product/list_fk', productController.get_list_fk)
+
+ // router.post('/v1/product/detail', productController.detail)
 
   router.post('/v1/product/add', upload.single('hinhanh'),productController.add)
 

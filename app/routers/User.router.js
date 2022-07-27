@@ -3,7 +3,9 @@ module.exports = function(router){
 
   router.get('/v1/user/list', userController.get_list)
 
-  router.get('/v1/user/detail', userController.detail)
+  router.post('/v1/user/detail', userController.detail)
+
+  router.post('/v1/user/detail/tk', userController.detailByTk)
 
   router.post('/v1/user/register',userController.add)
 

@@ -30,6 +30,17 @@ class User {
                 result(User[0])
         })
     }
+
+    //get by tk
+    static getByTk(id, result) {
+        db.query("select * from khachhang where tendangnhap = ?", id, function (err, User) {
+            if (err || User.length == 0)
+                result(null)
+            else
+                result(User[0])
+        })
+    }
+
     //add 
     static create(data, result) {
         db.query("insert into khachhang set ?", data, function (err, User) {

@@ -38,6 +38,17 @@ exports.detail = function (req, res) {
     })
 }
 
+exports.get_list_fk = function (req, res) {
+    Product.getByFk(req.body.maloaisp, function (response) {
+        if(response){
+            res.send({ result: response })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
 
 exports.add = function (req, res) {
     var imageUrl = null

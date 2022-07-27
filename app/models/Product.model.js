@@ -30,6 +30,18 @@ class Product {
                 result(Product[0])
         })
     }
+
+    //get list by maloaisp
+    static getByFk(id, result) {
+        db.query("call getSpFromLoaisp(?)", id, function (err, Product) {
+            if (err) {
+                result(err)
+                return
+            }
+            result(Product[0])
+        })
+    }
+
     //add 
     static create(data, result) {
         db.query("insert into sanpham set ?", data, function (err, Product) {

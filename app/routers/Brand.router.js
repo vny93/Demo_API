@@ -3,7 +3,7 @@ module.exports = function(router){
 
   router.get('/v1/brand/list', brandController.get_list)
 
-  router.get('/v1/brand/detail', brandController.detail)
+  //router.post('/v1/brand/detail', brandController.detail)
 
   router.post('/v1/brand/add',brandController.add)
 
