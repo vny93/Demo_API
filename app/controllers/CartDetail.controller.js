@@ -22,6 +22,18 @@ exports.detail = function (req, res) {
     })
 }
 
+exports.detail2 = function (req, res) {
+    CartDetail.getById2(req.body.magh, function (response) {
+        if(response){
+            res.send({ result: response })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
+
 exports.detail_product = function (req, res) {
     CartDetail.getByIdProduct(req.body, function (response) {
         if(response){
@@ -54,6 +66,20 @@ exports.update = function (req, res) {
         }
     })
 }
+
+exports.updateDetail = function (req, res) {
+    CartDetail.getByIdProduct(req.body, function (response) {
+        if(response){
+            CartDetail.updateDetail(req.body, function (response) {
+                res.send({ result: response })
+            })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
 
 exports.delete = function (req, res) {
     CartDetail.getById(req.body.magh, function (response) {

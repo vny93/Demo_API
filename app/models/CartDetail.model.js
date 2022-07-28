@@ -4,7 +4,7 @@ class CartDetail {
         this.magh = CartDetail.magh
         this.masp = CartDetail.masp
         this.gia = CartDetail.gia
-        this.soluong = CartDetail.soluong
+        this.ctsoluong = CartDetail.ctsoluong
         this.mapt = CartDetail.mapt
         this.soluongtra = CartDetail.soluongtra
     }
@@ -24,9 +24,22 @@ class CartDetail {
             if (err || CartDetail.length == 0)
                 result(null)
             else
-                result(CartDetail[0])
+                result(CartDetail)
         })
     }
+
+        //get by id
+        static getById2(id, result) {
+            db.query("call getListCartDetail(?)", id, function (err, res) {
+                if (err) {
+                    result(err)
+                    return
+                }
+                result(res[0])
+            })
+        }
+
+
 
     //get by id and masp
     static getByIdProduct(data, result) {
@@ -49,8 +62,8 @@ class CartDetail {
     }
     //update 
     static update(data, result) {
-        db.query("update chitietgiohang set gia = ?, soluong = ?, mapt = ?, soluongtra = ?"+
-        " where magh = ? and masp = ?", [data.gia, data.soluong, data.mapt, 
+        db.query("update chitietgiohang set gia = ?, ctsoluong = ?, mapt = ?, soluongtra = ?"+
+        " where magh = ? and masp = ?", [data.gia, data.ctsoluong, data.mapt, 
             data.soluongtra, data.magh, data.masp], function (err, CartDetail) {
             if (err)
                 result(null)
@@ -58,6 +71,17 @@ class CartDetail {
                 result("Cập nhật thông tin thành công")
         })
     }
+
+        //update 
+        static updateDetail(data, result) {
+            db.query("update chitietgiohang set gia = ?, ctsoluong = ?"+
+            " where magh = ? and masp = ?", [data.gia, data.ctsoluong, data.magh, data.masp], function (err, CartDetail) {
+                if (err)
+                    result(null)
+                else
+                    result("Cập nhật thông tin thành công")
+            })
+        }
 
     //delete sạch chi tiết giỏ hàng có id là : id
     static remove(id, result) {
