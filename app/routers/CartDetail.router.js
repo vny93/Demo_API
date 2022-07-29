@@ -9,13 +9,15 @@ module.exports = function(router){
 
   router.get('/v1/cartDetail/detail/product', cartDetailController.detail_product)
 
+  router.post('/v1/cartDetail/find', cartDetailController.findCartDetail)
+
   router.post('/v1/cartDetail/add',cartDetailController.add)
 
   router.put('/v1/cartDetail/update', cartDetailController.update)
 
   router.put('/v1/cartDetail/update/detail', cartDetailController.updateDetail)
 
-  router.delete('/v1/cartDetail/delete', cartDetailController.delete)
+  router.post('/v1/cartDetail/delete', cartDetailController.delete)
 
-  router.delete('/v1/cartDetail/delete/product', cartDetailController.deleteIdProduct)
+  router.post('/v1/cartDetail/delete/product', cartDetailController.deleteIdProduct)
 }

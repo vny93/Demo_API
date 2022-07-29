@@ -28,22 +28,32 @@ class CartDetail {
         })
     }
 
-        //get by id
-        static getById2(id, result) {
-            db.query("call getListCartDetail(?)", id, function (err, res) {
-                if (err) {
-                    result(err)
-                    return
-                }
-                result(res[0])
-            })
-        }
+    //get by id
+    static getById2(id, result) {
+        db.query("call getListCartDetail(?)", id, function (err, res) {
+            if (err) {
+                result(err)
+                return
+            }
+            result(res[0])
+        })
+    }
 
+    //find product by idcart and idpro
+    static findCartDetail(req, result) {
+        db.query("call FindProFromCartDetail(?,?)",[req.magh,req.masp], function (err, res) {
+            if (err) {
+                result(err)
+                return
+            }
+            result(res[0])
+        })
+    }
 
 
     //get by id and masp
     static getByIdProduct(data, result) {
-        db.query("select * from chitietgiohang where magh = ? and masp = ?",[data.magh, data.masp], function (err, CartDetail) {
+        db.query("select * from chitietgiohang where magh = ? and masp = ?", [data.magh, data.masp], function (err, CartDetail) {
             if (err || CartDetail.length == 0)
                 result(null)
             else
@@ -62,26 +72,26 @@ class CartDetail {
     }
     //update 
     static update(data, result) {
-        db.query("update chitietgiohang set gia = ?, ctsoluong = ?, mapt = ?, soluongtra = ?"+
-        " where magh = ? and masp = ?", [data.gia, data.ctsoluong, data.mapt, 
+        db.query("update chitietgiohang set gia = ?, ctsoluong = ?, mapt = ?, soluongtra = ?" +
+            " where magh = ? and masp = ?", [data.gia, data.ctsoluong, data.mapt,
             data.soluongtra, data.magh, data.masp], function (err, CartDetail) {
-            if (err)
-                result(null)
-            else
-                result("Cập nhật thông tin thành công")
-        })
+                if (err)
+                    result(null)
+                else
+                    result("Cập nhật thông tin thành công")
+            })
     }
 
-        //update 
-        static updateDetail(data, result) {
-            db.query("update chitietgiohang set gia = ?, ctsoluong = ?"+
+    //update 
+    static updateDetail(data, result) {
+        db.query("update chitietgiohang set gia = ?, ctsoluong = ?" +
             " where magh = ? and masp = ?", [data.gia, data.ctsoluong, data.magh, data.masp], function (err, CartDetail) {
                 if (err)
                     result(null)
                 else
                     result("Cập nhật thông tin thành công")
             })
-        }
+    }
 
     //delete sạch chi tiết giỏ hàng có id là : id
     static remove(id, result) {
@@ -93,15 +103,15 @@ class CartDetail {
         })
     }
 
-        //delete chi tiết giỏ hàng với id và masp
-        static removeIdProduct(data, result) {
-            db.query("delete from chitietgiohang where magh = ? and masp = ?", [data.magh, data.masp], function (err, CartDetail) {
-                if (err)
-                    result(null)
-                else
-                    result("Xóa chi tiết giỏ hàng " + data.magh + " với mã sản phẩm "+data.masp+" thành công")
-            })
-        }
+    //delete chi tiết giỏ hàng với id và masp
+    static removeIdProduct(data, result) {
+        db.query("delete from chitietgiohang where magh = ? and masp = ?", [data.magh, data.masp], function (err, CartDetail) {
+            if (err)
+                result(null)
+            else
+                result("Xóa chi tiết giỏ hàng " + data.magh + " với mã sản phẩm " + data.masp + " thành công")
+        })
+    }
 }
 
 module.exports = CartDetail

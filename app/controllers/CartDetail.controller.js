@@ -33,6 +33,17 @@ exports.detail2 = function (req, res) {
     })
 }
 
+exports.findCartDetail = function (req, res) {
+    CartDetail.findCartDetail(req.body, function (response) {
+        if(response){
+            res.send({ result: response })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
 
 exports.detail_product = function (req, res) {
     CartDetail.getByIdProduct(req.body, function (response) {
@@ -48,7 +59,14 @@ exports.detail_product = function (req, res) {
 
 exports.add = function (req, res) {
     console.log("magh: "+req.body.magh)
-    CartDetail.create(req.body, function (response) {
+    var data = {
+        magh: req.body.magh,
+        masp: req.body.masp,
+        gia: req.body.gia,
+        ctsoluong: req.body.ctsoluong
+    }
+    
+    CartDetail.create(data, function (response) {
         res.send({ result: response })
     })
 }
