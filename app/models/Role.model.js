@@ -23,6 +23,18 @@ class Role {
                 result(Role[0])
         })
     }
+
+    //get mã quyền
+    static getByName(name, result) {
+        db.query("select * from quyen where tenquyen = ?", name, function (err, Role) {
+            if (err || Role.length == 0)
+                result(null)
+            else
+                result(Role[0])
+        })
+    }
+
+
     //add 
     static create(data, result) {
         db.query("insert into quyen set ?", data, function (err, Role) {

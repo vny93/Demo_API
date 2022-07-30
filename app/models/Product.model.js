@@ -10,6 +10,9 @@ class Product {
         this.maloaisp = Product.maloaisp
         this.mahang = Product.mahang
         this.manhacc = Product.manhacc
+        this.isgood = Product.isgood
+        this.isnew = Product.isnew
+
     }
     //get list 
     static get_all(result) {
@@ -54,8 +57,8 @@ class Product {
     //update 
     static update(data, result) {
         db.query("update sanpham set tensp = ?, gia = ?, soluong = ?, mota = ?, hinhanh = ?, maloaisp = ?,"+
-        "mahang = ?, manhacc = ? where masp = ?", [data.tensp, data.gia, data.soluong, data.mota, data.hinhanh,
-        data.maloaisp, data.mahang, data.manhacc, data.masp], function (err, Product) {
+        "mahang = ?, manhacc = ?, isgood = ?, isnew = ? where masp = ?", [data.tensp, data.gia, data.soluong, data.mota, data.hinhanh,
+        data.maloaisp, data.mahang, data.manhacc, data.isgood, data.isnew, data.masp], function (err, Product) {
             if (err)
                 result(null)
             else

@@ -33,6 +33,8 @@ require('./app/routers/Auth2.router')(app)
 require('./app/routers/ProductType2.router')(app)
 require('./app/routers/Product2.router')(app)
 require('./app/routers/Brand2.router')(app)
+require('./app/routers/Role2.router')(app)
+require('./app/routers/User2.router')(app)
 
 app.use(_AuthMiddleWare.isAuth) // check token hợp lệ thì sẽ được chạy những routers phía dưới 
 require('./app/routers/Auth.router')(app)

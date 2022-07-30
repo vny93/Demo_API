@@ -22,6 +22,17 @@ exports.detail = function (req, res) {
     })
 }
 
+exports.FindRole = function (req, res) {
+    Role.getByName(req.body.tenquyen, function (response) {
+        if(response){
+            res.send({ result: response })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
 
 exports.add = function (req, res) {
     Role.create(req.body, function (response) {

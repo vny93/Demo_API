@@ -71,7 +71,9 @@ exports.add = function (req, res) {
         hinhanh: imageUrl,
         maloaisp: req.body.maloaisp,
         mahang : req.body.mahang,
-        manhacc: req.body.manhacc
+        manhacc: req.body.manhacc,
+        isgood : req.body.isgood,
+        isnew : req.body.isnew
     }
     Product.create(data, function (response) {
         res.send({ result: response })
@@ -101,7 +103,9 @@ exports.update = function (req, res) {
                 hinhanh: imageUrl,
                 maloaisp: req.body.maloaisp,
                 mahang : req.body.mahang,
-                manhacc: req.body.manhacc
+                manhacc: req.body.manhacc,
+                isgood : req.body.isgood,
+                isnew : req.body.isnew
             }
             Product.update(data, function (response) {
                 res.send({ result: response })

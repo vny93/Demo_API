@@ -26,6 +26,17 @@ class Auth {
                 result(Auth[0]) //sql trả về dữ liệu vào biến taikhoan trong function sau khi tìm ra 
         })
     }
+
+    //find account
+    static findAccount(tendangnhap, result) {
+        db.query("select * from Taikhoan where tendangnhap = ?", tendangnhap, function (err, Auth) {
+            if (err || Auth.length == 0)
+                result(false)
+            else
+                result(true) //sql trả về dữ liệu vào biến taikhoan trong function sau khi tìm ra 
+        })
+    }
+
     //add tk
     static create(data, result) {
         db.query("insert into taikhoan set ?", data, function (err, Auth) {

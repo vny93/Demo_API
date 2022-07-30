@@ -51,9 +51,27 @@ exports.detail = function (req, res) {
     })
 }
 
+//find account
+exports.finAccount = function (req, res) {
+    Auth.findAccount(req.body.tendangnhap, function (response) {
+        if(response){
+            res.send({ result: response })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
 //add tk
 exports.add = function (req, res) {
-    Auth.create(req.body, function (response) {
+    var data = {
+        tendangnhap : req.body.tendangnhap,
+        matkhau : req.body.matkhau,
+        trangthai : 0,
+        maquyen : req.body.maquyen 
+     }
+    Auth.create(data, function (response) {
         res.send({ result: response })
     })
 }

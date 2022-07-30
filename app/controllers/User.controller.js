@@ -22,6 +22,28 @@ exports.detail = function (req, res) {
     })
 }
 
+exports.getByPhone = function (req, res) {
+    User.getByPhone(req.body.sdt, function (response) {
+        if(response){
+            res.send({ result: response })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
+exports.getByEmail = function (req, res) {
+    User.getByEmail(req.body.email, function (response) {
+        if(response){
+            res.send({ result: response })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
 exports.detailByTk = function (req, res) {
     User.getByTk(req.body.tendangnhap, function (response) {
         if(response){
@@ -35,7 +57,17 @@ exports.detailByTk = function (req, res) {
 
 
 exports.add = function (req, res) {
-    User.create(req.body, function (response) {
+    var data = {
+        hoten : req.body.hoten, 
+        gioitinh : req.body.gioitinh,
+        diachi : req.body.diachi,
+        ngaysinh : req.body.ngaysinh,
+        sdt : req.body.sdt,
+        email : req.body.email,
+        masothue : req.body.masothue,
+        tendangnhap : req.body.tendangnhap
+     }
+    User.create(data, function (response) {
         res.send({ result: response })
     })
 }

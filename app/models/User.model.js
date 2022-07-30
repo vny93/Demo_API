@@ -41,6 +41,26 @@ class User {
         })
     }
 
+    //get by phone
+    static getByPhone(sdt, result) {
+        db.query("select * from khachhang where sdt = ?", sdt, function (err, User) {
+            if (err || User.length == 0)
+                result(false)
+            else
+                result(User[0].makh)
+        })
+    }
+
+    //get by email
+    static getByEmail(email, result) {
+        db.query("select * from khachhang where email = ?", email, function (err, User) {
+            if (err || User.length == 0)
+                result(false)
+            else
+                result(User[0].makh)
+        })
+    }
+
     //add 
     static create(data, result) {
         db.query("insert into khachhang set ?", data, function (err, User) {
@@ -52,14 +72,14 @@ class User {
     }
     //update 
     static update(data, result) {
-        db.query("update khachhang set hoten = ?, gioitinh = ?, diachi = ?, ngaysinh = ?,"+
-        "sdt = ?, email = ?, masothue = ? where makh = ?", [data.hoten, data.gioitinh, data.diachi, 
+        db.query("update khachhang set hoten = ?, gioitinh = ?, diachi = ?, ngaysinh = ?," +
+            "sdt = ?, email = ?, masothue = ? where makh = ?", [data.hoten, data.gioitinh, data.diachi,
             data.ngaysinh, data.sdt, data.email, data.masothue, data.makh], function (err, User) {
-            if (err)
-                result(null)
-            else
-                result("Cập nhật thông tin thành công")
-        })
+                if (err)
+                    result(null)
+                else
+                    result("Cập nhật thông tin thành công")
+            })
     }
 
     //delete
