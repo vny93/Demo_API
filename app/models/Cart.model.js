@@ -10,6 +10,7 @@ class Cart {
         this.ngaygiao = Cart.ngaygiao
         this.tongtien = Cart.tongtien
         this.trangthai = Cart.trangthai
+        this.ngaydukien = Cart.ngaydukien //mới thêm
         this.manvduyet = Cart.manvduyet
         this.manvgiao = Cart.manvgiao
         this.makh = Cart.makh
@@ -66,8 +67,8 @@ class Cart {
     //update 
     static update(data, result) {
         db.query("update giohang set ngaydat = ?, hotennguoinhan = ?, diachinguoinhan = ?, sdtnguoinhan = ?, emailnguoinhan = ?," +
-            " ngaygiao = ?, tongtien = ?, trangthai = ?, manvduyet = ?, manvgiao = ?, makh = ? where magh = ?", [data.ngaydat, data.hotennguoinhan,
-            data.diachinguoinhan, data.sdtnguoinhan, data.emailnguoinhan, data.ngaygiao, data.tongtien, data.trangthai, data.manvduyet,
+            " ngaygiao = ?, tongtien = ?, trangthai = ?, ngaydukien = ?, manvduyet = ?, manvgiao = ?, makh = ? where magh = ?", [data.ngaydat, data.hotennguoinhan,
+            data.diachinguoinhan, data.sdtnguoinhan, data.emailnguoinhan, data.ngaygiao, data.tongtien, data.trangthai,data.ngaydukien, data.manvduyet,
             data.manvgiao, data.makh, data.magh], function (err, Cart) {
                 if (err)
                     result(null)

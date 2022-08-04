@@ -50,6 +50,17 @@ exports.detail = function (req, res) {
         }
     })
 }
+//check
+exports.check = function (req, res) {
+    Auth.check(req.body, function (response) {
+        if(response){
+            res.send({ result: response })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
 
 //find account
 exports.finAccount = function (req, res) {
@@ -126,7 +137,7 @@ exports.login = function (req, res) {
             Auth.check_login(req.body, async function (response) {
                 if (response) {
                     const accessToken = await JWT.make(response)
-                    res.send({ accessToken: accessToken})
+                    res.send({ accessToken: accessToken, maquyen : response.maquyen})
                     // const accessToken = JWT.makeAccessToken(response)
                     // jwt.sign({
                     //     id: response.tendangnhap

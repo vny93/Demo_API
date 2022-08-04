@@ -10,6 +10,9 @@ module.exports = function (router) {
   //get tk by id
   router.get('/v1/auth/detail', authController.detail)
 
+  //check
+  router.post('/v1/auth/check', authController.check)
+
   //update tk
   router.put('/v1/auth/update/password', authController.update_password)
 

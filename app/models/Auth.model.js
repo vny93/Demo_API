@@ -27,6 +27,16 @@ class Auth {
         })
     }
 
+    //check
+    static check(data, result) {
+        db.query("select * from Taikhoan where tendangnhap = ? and matkhau = ?",[data.tendangnhap,data.matkhau], function (err, Auth) {
+            if (err || Auth.length == 0)
+                result(false)
+            else
+                result(true) 
+        })
+    }
+
     //find account
     static findAccount(tendangnhap, result) {
         db.query("select * from Taikhoan where tendangnhap = ?", tendangnhap, function (err, Auth) {
@@ -42,8 +52,11 @@ class Auth {
         db.query("insert into taikhoan set ?", data, function (err, Auth) {
             if (err)
                 result(null)
-            else
-                result(data) //trả về data để hiển thị postman cái mình insert vô, còn taikhoan ở hàm function lúc này sql kh trả về dl sau khi insert
+            else{
+                 result({tendangnhap : data.tendangnhap,
+                        trangthai : 0,
+                        maquyen : data.maquyen }) //trả về data để hiển thị postman cái mình insert vô, còn taikhoan ở hàm function lúc này sql kh trả về dl sau khi insert
+            }
         })
     }
     //update password
