@@ -65,6 +65,15 @@ class Product {
                 result("Cập nhật thông tin thành công")
         })
     }
+    //update amount
+    static updateAmount(data, result) {
+        db.query("update sanpham set soluong = ? where masp = ?", [data.soluong, data.masp], function (err, Product) {
+            if (err)
+                result(null)
+            else
+                result("Cập nhật thông tin thành công")
+        })
+    }
 
     //delete
     static remove(id, result) {

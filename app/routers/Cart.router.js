@@ -11,5 +11,7 @@ module.exports = function(router){
 
   router.put('/v1/cart/update', cartController.update)
 
+  router.put('/v1/cart/update/user', cartController.user_update_cart)
+
   router.delete('/v1/cart/delete', cartController.delete)
 }

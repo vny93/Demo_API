@@ -117,6 +117,20 @@ exports.update = function (req, res) {
     })
 }
 
+exports.update_amount = function (req, res) {
+    Product.getById(req.body.masp, function (response) {
+        if(response){
+            Product.updateAmount(req.body, function (response) {
+                res.send({ result: response })
+            })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
+
 exports.delete = function (req, res) {
     Product.getById(req.body.masp, function (response) {
         if(response){

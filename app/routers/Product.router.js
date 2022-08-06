@@ -30,5 +30,7 @@ module.exports = function(router){
 
   router.put('/v1/product/update',upload.single('hinhanh'), productController.update)
 
+  router.put('/v1/product/update/amount', productController.update_amount)
+
   router.delete('/v1/product/delete', productController.delete)
 }

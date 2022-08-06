@@ -1,4 +1,5 @@
 const db = require('../common/connect')
+const dateFormat = require('date-and-time')
 class Cart {
     constructor() {
         this.magh = Cart.magh
@@ -76,6 +77,21 @@ class Cart {
                     result("Cập nhật thông tin thành công")
             })
     }
+
+        //user update cart 
+        static userUpdateCart(data, result) {
+            const now = new Date()
+            var date= dateFormat.format(now,'YYYY-MM-DD HH:mm:ss')
+            console.log(date)
+            db.query("update giohang set ngaydat = ?, hotennguoinhan = ?, diachinguoinhan = ?, sdtnguoinhan = ?, emailnguoinhan = ?," +
+                "tongtien = ?, trangthai = ? where magh = ?", [date, data.hotennguoinhan,
+                data.diachinguoinhan, data.sdtnguoinhan, data.emailnguoinhan, data.tongtien, data.trangthai, data.magh], function (err, Cart) {
+                    if (err)
+                        result(null)
+                    else
+                        result("Cập nhật thông tin thành công")
+                })
+        }
 
     //delete
     static remove(id, result) {

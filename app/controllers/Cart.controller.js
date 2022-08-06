@@ -69,6 +69,19 @@ exports.update = function (req, res) {
     })
 }
 
+exports.user_update_cart = function (req, res) {
+    Cart.getById(req.body.magh, function (response) {
+        if(response){
+            Cart.userUpdateCart(req.body, function (response) {
+                res.send({ result: response })
+            })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
 exports.delete = function (req, res) {
     Cart.getById(req.body.magh, function (response) {
         if(response){
