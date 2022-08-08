@@ -3,7 +3,7 @@ class CartDetail {
     constructor() {
         this.magh = CartDetail.magh
         this.masp = CartDetail.masp
-        this.gia = CartDetail.gia
+        this.ctgia = CartDetail.ctgia
         this.ctsoluong = CartDetail.ctsoluong
         this.mapt = CartDetail.mapt
         this.soluongtra = CartDetail.soluongtra
@@ -72,8 +72,8 @@ class CartDetail {
     }
     //update 
     static update(data, result) {
-        db.query("update chitietgiohang set gia = ?, ctsoluong = ?, mapt = ?, soluongtra = ?" +
-            " where magh = ? and masp = ?", [data.gia, data.ctsoluong, data.mapt,
+        db.query("update chitietgiohang set ctgia = ?, ctsoluong = ?, mapt = ?, soluongtra = ?" +
+            " where magh = ? and masp = ?", [data.ctgia, data.ctsoluong, data.mapt,
             data.soluongtra, data.magh, data.masp], function (err, CartDetail) {
                 if (err)
                     result(null)
@@ -84,8 +84,8 @@ class CartDetail {
 
     //update 
     static updateDetail(data, result) {
-        db.query("update chitietgiohang set gia = ?, ctsoluong = ?" +
-            " where magh = ? and masp = ?", [data.gia, data.ctsoluong, data.magh, data.masp], function (err, CartDetail) {
+        db.query("update chitietgiohang set ctgia = ?, ctsoluong = ?" +
+            " where magh = ? and masp = ?", [data.ctgia, data.ctsoluong, data.magh, data.masp], function (err, CartDetail) {
                 if (err)
                     result(null)
                 else

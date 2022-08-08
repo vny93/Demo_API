@@ -26,6 +26,37 @@ exports.get_list = function (req, res) {
         res.status(500).json(err)
     }
 }
+//discount
+exports.getDiscount = function (req, res) {
+    try {
+        Product.getDiscount(function (response) {
+            res.send({ result: response })
+        })
+    } catch (err) {
+        res.status(500).json(err)
+    }
+}
+//is new
+exports.getIsNew = function (req, res) {
+    try {
+        Product.getIsNew(function (response) {
+            res.send({ result: response })
+        })
+    } catch (err) {
+        res.status(500).json(err)
+    }
+}
+//is good
+exports.getIsGood = function (req, res) {
+    try {
+        Product.getIsGood(function (response) {
+            res.send({ result: response })
+        })
+    } catch (err) {
+        res.status(500).json(err)
+    }
+}
+
 
 exports.detail = function (req, res) {
     Product.getById(req.body.masp, function (response) {

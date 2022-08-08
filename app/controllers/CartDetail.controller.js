@@ -62,7 +62,7 @@ exports.add = function (req, res) {
     var data = {
         magh: req.body.magh,
         masp: req.body.masp,
-        gia: req.body.gia,
+        ctgia: req.body.ctgia,
         ctsoluong: req.body.ctsoluong
     }
     

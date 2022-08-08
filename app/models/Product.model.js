@@ -26,22 +26,55 @@ class Product {
     }
     //get by id
     static getById(id, result) {
-        db.query("select * from sanpham where masp = ?", id, function (err, Product) {
-            if (err || Product.length == 0)
+        db.query("call get_productDetail(?)", id, function (err, res) {
+            if (err || res.length == 0)
                 result(null)
             else
-                result(Product[0])
+                result(res[0])
         })
     }
 
     //get list by maloaisp
     static getByFk(id, result) {
-        db.query("call getSpFromLoaisp(?)", id, function (err, Product) {
+        db.query("call get_Product_FK(?)", id, function (err, res) { //thay thế getSpFromLoaisp(?)
             if (err) {
                 result(err)
                 return
             }
-            result(Product[0])
+            result(res[0])
+        })
+    }
+
+    //get list discount
+    static getDiscount(result) {
+        db.query("call get_productDiscount", function (err, res) {
+            if (err) {
+                result(err)
+                return
+            }
+            result(res[0])
+        })
+    }
+
+    //get list new
+    static getIsNew(result) {
+        db.query("call get_productIsNew", function (err, res) {
+            if (err) {
+                result(err)
+                return
+            }
+            result(res[0])
+        })
+    }
+
+    //get list good
+    static getIsGood(result) {
+        db.query("call get_productIsGood", function (err, res) {
+            if (err) {
+                result(err)
+                return
+            }
+            result(res[0])
         })
     }
 
@@ -56,14 +89,14 @@ class Product {
     }
     //update 
     static update(data, result) {
-        db.query("update sanpham set tensp = ?, gia = ?, soluong = ?, mota = ?, hinhanh = ?, maloaisp = ?,"+
-        "mahang = ?, manhacc = ?, isgood = ?, isnew = ? where masp = ?", [data.tensp, data.gia, data.soluong, data.mota, data.hinhanh,
-        data.maloaisp, data.mahang, data.manhacc, data.isgood, data.isnew, data.masp], function (err, Product) {
-            if (err)
-                result(null)
-            else
-                result("Cập nhật thông tin thành công")
-        })
+        db.query("update sanpham set tensp = ?, gia = ?, soluong = ?, mota = ?, hinhanh = ?, maloaisp = ?," +
+            "mahang = ?, manhacc = ?, isgood = ?, isnew = ? where masp = ?", [data.tensp, data.gia, data.soluong, data.mota, data.hinhanh,
+            data.maloaisp, data.mahang, data.manhacc, data.isgood, data.isnew, data.masp], function (err, Product) {
+                if (err)
+                    result(null)
+                else
+                    result("Cập nhật thông tin thành công")
+            })
     }
     //update amount
     static updateAmount(data, result) {
