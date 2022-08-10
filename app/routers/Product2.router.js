@@ -11,6 +11,10 @@ module.exports = function (router) {
 
   router.get('/v1/product/list/isgood', productController.getIsGood)
 
+  router.post('/v1/product/list/brand', productController.getByBrand)
+
+  router.post('/v1/product/list/search', productController.searchProduct)
+
   router.post('/v1/product/detail', productController.detail)
 
 }

@@ -24,7 +24,28 @@ exports.detail = function (req, res) {
 
 
 exports.add = function (req, res) {
-    Brand.create(req.body, function (response) {
+    var imageUrl = null
+    if (!req.file) {
+        imageUrl = null
+    }
+    else {
+        // if(req.file.filename && req.file.filename.length > 0){
+        const serverName = "localhost"
+        const serverPort = 3000
+        imageUrl = `${serverName}:${serverPort}/v1/product/open_image?imageName=${req.file.filename}`
+    }
+
+    var data = {
+        mahang: req.body.mahang,
+        tenhang: req.body.tenhang,
+        email : req.body.email,
+        sdt : req.body.sdt,
+        logo: imageUrl,
+        mota : req.body.mota
+
+    }
+
+    Brand.create(data, function (response) {
         res.send({ result: response })
     })
 }
@@ -32,8 +53,61 @@ exports.add = function (req, res) {
 
 exports.update = function (req, res) {
     Brand.getById(req.body.mahang, function (response) {
+
         if(response){
-            Brand.update(req.body, function (response) {
+            var imageUrl = null
+            if (!req.file) {
+                imageUrl = null
+            }
+            else {
+                // if(req.file.filename && req.file.filename.length > 0){
+                const serverName = "localhost"
+                const serverPort = 3000
+                imageUrl = `${serverName}:${serverPort}/v1/product/open_image?imageName=${req.file.filename}`
+            }
+        
+            var data = {
+                mahang: req.body.mahang,
+                tenhang: req.body.tenhang,
+                email : req.body.email,
+                sdt : req.body.sdt,
+                logo: imageUrl,
+                mota : req.body.mota
+        
+            }
+
+            Brand.update(data, function (response) {
+                res.send({ result: response })
+            })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
+exports.updateImage = function (req, res) {
+    Brand.getById(req.body.mahang, function (response) {
+
+        if(response){
+            var imageUrl = null
+            if (!req.file) {
+                imageUrl = null
+            }
+            else {
+                // if(req.file.filename && req.file.filename.length > 0){
+                const serverName = "localhost"
+                const serverPort = 3000
+                imageUrl = `${serverName}:${serverPort}/v1/product/open_image?imageName=${req.file.filename}`
+            }
+        
+            var data = {
+                mahang: req.body.mahang,
+                logo: imageUrl,
+        
+            }
+
+            Brand.updateImage(data, function (response) {
                 res.send({ result: response })
             })
         }

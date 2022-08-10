@@ -45,6 +45,17 @@ class Product {
         })
     }
 
+    //get list by brand
+    static getByBrand(id, result) {
+        db.query("call get_productByBrand(?)", id, function (err, res) {
+            if (err) {
+                result(err)
+                return
+            }
+            result(res[0])
+        })
+    }
+
     //get list discount
     static getDiscount(result) {
         db.query("call get_productDiscount", function (err, res) {
@@ -75,6 +86,16 @@ class Product {
                 return
             }
             result(res[0])
+        })
+    }
+
+    //search product
+    static searchProduct(data, result) {
+        db.query("call search_product(?,?,?,?)", [data.tensp, data.mahang, data.min, data.max], function (err, res) {
+            if (err || res.length == 0)
+                result(null)
+            else
+                result(res[0])
         })
     }
 

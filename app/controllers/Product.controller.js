@@ -26,6 +26,18 @@ exports.get_list = function (req, res) {
         res.status(500).json(err)
     }
 }
+
+//get by brand
+exports.getByBrand = function (req, res) {
+    try {
+        Product.getByBrand(req.body.mahang,function (response) {
+            res.send({ result: response })
+        })
+    } catch (err) {
+        res.status(500).json(err)
+    }
+}
+
 //discount
 exports.getDiscount = function (req, res) {
     try {
@@ -57,6 +69,17 @@ exports.getIsGood = function (req, res) {
     }
 }
 
+//search
+exports.searchProduct = function (req, res) {
+    try {
+        Product.searchProduct(req.body,function (response) {
+            res.send({ result: response })
+        })
+    } catch (err) {
+        res.status(500).json(err)
+    }
+}
+
 
 exports.detail = function (req, res) {
     Product.getById(req.body.masp, function (response) {
@@ -79,6 +102,7 @@ exports.get_list_fk = function (req, res) {
         }
     })
 }
+
 
 
 exports.add = function (req, res) {

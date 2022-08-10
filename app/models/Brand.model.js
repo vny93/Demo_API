@@ -5,6 +5,8 @@ class Brand {
         this.tenhang = Brand.tenhang
         this.email = Brand.email
         this.sdt = Brand.sdt
+        this.logo = Brand.logo
+        this.mota = Brand.mota
     }
     //get list 
     static get_all(result) {
@@ -36,13 +38,24 @@ class Brand {
     }
     //update 
     static update(data, result) {
-        db.query("update hangsanxuat set tenhang = ?, email = ?, sdt = ?"+
-        "where mahang = ?", [data.tenhang, data.email, data.sdt, data.mahang], function (err, Brand) {
-            if (err)
-                result(null)
-            else
-                result("Cập nhật thông tin thành công")
-        })
+        db.query("update hangsanxuat set tenhang = ?, email = ?, sdt = ?, logo = ?, mota = ?" +
+            "where mahang = ?", [data.tenhang, data.email, data.sdt, data.logo, data.mota, data.mahang], function (err, Brand) {
+                if (err)
+                    result(null)
+                else
+                    result("Cập nhật thông tin thành công")
+            })
+    }
+
+    //update image
+    static updateImage(data, result) {
+        db.query("update hangsanxuat set logo = ?" +
+            "where mahang = ?", [data.logo, data.mahang], function (err, Brand) {
+                if (err)
+                    result(null)
+                else
+                    result("Cập nhật thông tin thành công")
+            })
     }
 
     //delete

@@ -3,5 +3,6 @@ module.exports = function(router){
 
   router.post('/v1/brand/detail', brandController.detail)
 
+  router.get('/v1/brand/list', brandController.get_list)
 
 }
