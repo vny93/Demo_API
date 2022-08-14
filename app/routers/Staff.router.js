@@ -5,6 +5,8 @@ module.exports = function(router){
 
   router.get('/v1/staff/detail', staffController.detail)
 
+  router.post('/v1/staff/detail/tk', staffController.detailByTk)
+
   router.post('/v1/staff/register',staffController.add)
 
   router.put('/v1/staff/update', staffController.update)

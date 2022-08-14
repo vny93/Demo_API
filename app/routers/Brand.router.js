@@ -24,7 +24,15 @@ module.exports = function(router){
 
   router.put('/v1/brand/update', upload.single('logo'), brandController.update)
 
+  router.put('/v1/brand/updateInfor', brandController.updateInfor)
+
   router.put('/v1/brand/update/image', upload.single('logo'), brandController.updateImage)
 
+  router.post('/v1/brand/get/image/url', upload.single('image'), brandController.getUrl)
+
   router.delete('/v1/brand/delete', brandController.delete)
+
+  router.post('/v1/brand/findPhone',brandController.getBrandPhone)
+
+  router.post('/v1/brand/findEmail',brandController.getBrandEmail)
 }

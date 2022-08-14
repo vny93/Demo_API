@@ -3,7 +3,7 @@ module.exports = function(router){
 
   router.get('/v1/cart/list', cartController.get_list)
 
-  router.get('/v1/cart/detail', cartController.detail)
+  router.post('/v1/cart/detail', cartController.detail)
 
   router.post('/v1/cart/status', cartController.getCartByStatus)
 
