@@ -20,7 +20,9 @@ module.exports = function(router){
 
   //router.post('/v1/brand/detail', brandController.detail)
 
-  router.post('/v1/brand/add',upload.single('logo'), brandController.add)
+  // router.post('/v1/brand/add',upload.single('logo'), brandController.add) // kh cần truyền file ảnh nữa
+
+  router.post('/v1/brand/add', brandController.add)
 
   router.put('/v1/brand/update', upload.single('logo'), brandController.update)
 
@@ -30,7 +32,9 @@ module.exports = function(router){
 
   router.post('/v1/brand/get/image/url', upload.single('image'), brandController.getUrl)
 
-  router.delete('/v1/brand/delete', brandController.delete)
+  router.post('/v1/brand/check/user', brandController.checkBrandUser)
+
+  router.post('/v1/brand/delete', brandController.delete)
 
   router.post('/v1/brand/findPhone',brandController.getBrandPhone)
 

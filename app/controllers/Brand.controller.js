@@ -22,6 +22,17 @@ exports.detail = function (req, res) {
     })
 }
 
+exports.checkBrandUser = function (req, res) {
+    Brand.checkBrandUser(req.body.mahang, function (response) {
+        if (response) {
+            res.send({ result: response })
+        }
+        else {
+            res.status(404).json("not find")
+        }
+    })
+}
+
 exports.getBrandPhone = function (req, res) {
     Brand.getByPhone(req.body.sdt, function (response) {
         if (response) {
@@ -45,7 +56,7 @@ exports.getBrandEmail = function (req, res) {
 }
 
 
-exports.add = function (req, res) {
+/*exports.add = function (req, res) {
     var imageUrl = null
     if (!req.file) {
         imageUrl = null
@@ -68,6 +79,11 @@ exports.add = function (req, res) {
     }
 
     Brand.create(data, function (response) {
+        res.send({ result: response })
+    })
+}*/
+exports.add = function (req, res) {
+    Brand.create(req.body, function (response) {
         res.send({ result: response })
     })
 }
