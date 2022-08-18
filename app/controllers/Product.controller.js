@@ -27,6 +27,16 @@ exports.get_list = function (req, res) {
     }
 }
 
+exports.get_full = function (req, res) {
+    try {
+        Product.get_full(function (response) {
+            res.send({ result: response })
+        })
+    } catch (err) {
+        res.status(500).json(err)
+    }
+}
+
 //get by brand
 exports.getByBrand = function (req, res) {
     try {
@@ -98,6 +108,18 @@ exports.get_list_fk = function (req, res) {
             res.send({ result: response })
         }
         else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
+
+exports.checkProductUse = function (req, res) {
+    Product.checkProductUse(req.body.masp, function (response) {
+        if (response) {
+            res.send({ result: response })
+        }
+        else {
             res.status(404).json("not find")
         }
     })

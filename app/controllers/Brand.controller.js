@@ -22,8 +22,8 @@ exports.detail = function (req, res) {
     })
 }
 
-exports.checkBrandUser = function (req, res) {
-    Brand.checkBrandUser(req.body.mahang, function (response) {
+exports.checkBrandUse = function (req, res) {
+    Brand.checkBrandUse(req.body.mahang, function (response) {
         if (response) {
             res.send({ result: response })
         }

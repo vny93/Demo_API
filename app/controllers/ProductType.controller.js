@@ -22,26 +22,20 @@ exports.detail = function (req, res) {
     })
 }
 
+exports.checkPTUse = function (req, res) {
+    ProductType.checkPTUse(req.body.maloaisp, function (response) {
+        if (response) {
+            res.send({ result: response })
+        }
+        else {
+            res.status(404).json("not find")
+        }
+    })
+}
+
 
 exports.add = function (req, res) {
-    var imageUrl = null
-    if (!req.file) {
-        imageUrl = null
-    }
-    else {
-        // if(req.file.filename && req.file.filename.length > 0){
-        const serverName = "localhost"
-        const serverPort = 3000
-        imageUrl = `${serverName}:${serverPort}/v1/product/open_image?imageName=${req.file.filename}`
-    }
-
-    var data = {
-        maloaisp: req.body.maloaisp,
-        tenloaisp: req.body.tenloaisp,
-        hinhanh: imageUrl
-    }
-
-    ProductType.create(data, function (response) {
+    ProductType.create(req.body, function (response) {
         res.send({ result: response })
     })
 }
@@ -69,6 +63,34 @@ exports.update = function (req, res) {
             }
 
             ProductType.update(data, function (response) {
+                res.send({ result: response })
+            })
+        }
+        else {
+            res.status(404).json("not find")
+        }
+    })
+}
+
+//-----
+exports.updateInfor = function (req, res) {
+    ProductType.getById(req.body.maloaisp, function (response) {
+        if (response) {
+            ProductType.updateInfor(req.body, function (response) {
+                res.send({ result: response })
+            })
+        }
+        else {
+            res.status(404).json("not find")
+        }
+    })
+}
+
+//update image
+exports.updateImage = function (req, res) {
+    ProductType.getById(req.body.maloaisp, function (response) {
+        if (response) {
+            ProductType.updateImage(req.body, function (response) {
                 res.send({ result: response })
             })
         }

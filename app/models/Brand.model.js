@@ -29,7 +29,7 @@ class Brand {
     }
 
     //check brand use
-    static checkBrandUser(id, result) {
+    static checkBrandUse(id, result) {
         db.query("call check_brand_use(?)", id, function (err, Brand) {
             if (err || Brand[0].length == 0)
                 result(null)

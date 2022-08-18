@@ -24,6 +24,17 @@ class ProductType {
                 result(ProductType[0])
         })
     }
+
+    //check product type use
+    static checkPTUse(id, result) {
+        db.query("call check_productType_use(?)", id, function (err, ProductType) {
+            if (err || ProductType[0].length == 0)
+                result(null)
+            else
+                result(id)
+        })
+    }
+
     //add 
     static create(data, result) {
         db.query("insert into loaisanpham set ?", data, function (err, ProductType) {
@@ -35,13 +46,35 @@ class ProductType {
     }
     //update 
     static update(data, result) {
-        db.query("update loaisanpham set tenloaisp = ?, hinhanh = ? "+
-        "where maloaisp = ?", [data.tenloaisp, data.hinhanh, data.maloaisp], function (err, ProductType) {
-            if (err)
-                result(null)
-            else
-                result("Cập nhật thông tin thành công")
-        })
+        db.query("update loaisanpham set tenloaisp = ?, hinhanh = ? " +
+            "where maloaisp = ?", [data.tenloaisp, data.hinhanh, data.maloaisp], function (err, ProductType) {
+                if (err)
+                    result(null)
+                else
+                    result("Cập nhật thông tin thành công")
+            })
+    }
+
+    //update infor
+    static updateInfor(data, result) {
+        db.query("update loaisanpham set tenloaisp = ? " +
+            "where maloaisp = ?", [data.tenloaisp, data.maloaisp], function (err, ProductType) {
+                if (err)
+                    result(null)
+                else
+                    result("Cập nhật thông tin thành công")
+            })
+    }
+
+    //update image
+    static updateImage(data, result) {
+        db.query("update loaisanpham set hinhanh = ?" +
+            "where maloaisp = ?", [data.hinhanh, data.maloaisp], function (err, ProductType) {
+                if (err)
+                    result(null)
+                else
+                    result("Cập nhật thông tin thành công")
+            })
     }
 
     //delete

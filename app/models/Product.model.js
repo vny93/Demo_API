@@ -24,6 +24,17 @@ class Product {
             result(Product)
         })
     }
+
+    //get full product
+    static get_full(result) {
+        db.query("call get_fullProduct", function (err, res) {
+            if (err) {
+                result(err)
+                return
+            }
+            result(res[0])
+        })
+    }
     //get by id
     static getById(id, result) {
         db.query("call get_productDetail(?)", id, function (err, res) {
@@ -96,6 +107,16 @@ class Product {
                 result(null)
             else
                 result(res[0])
+        })
+    }
+
+    //check product use
+    static checkProductUse(id, result) {
+        db.query("call check_product_use(?)", id, function (err, Product) {
+            if (err || Product[0].length == 0)
+                result(null)
+            else
+                result(id)
         })
     }
 

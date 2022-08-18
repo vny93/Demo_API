@@ -32,7 +32,7 @@ module.exports = function(router){
 
   router.post('/v1/brand/get/image/url', upload.single('image'), brandController.getUrl)
 
-  router.post('/v1/brand/check/user', brandController.checkBrandUser)
+  router.post('/v1/brand/check/use', brandController.checkBrandUse)
 
   router.post('/v1/brand/delete', brandController.delete)
 
