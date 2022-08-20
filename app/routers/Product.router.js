@@ -28,11 +28,15 @@ module.exports = function(router){
 
  // router.post('/v1/product/detail', productController.detail)
 
-  router.post('/v1/product/add', upload.single('hinhanh'),productController.add)
+  router.post('/v1/product/add',productController.add)
 
   router.put('/v1/product/update',upload.single('hinhanh'), productController.update)
 
   router.put('/v1/product/update/amount', productController.update_amount)
+
+  router.put('/v1/product/update/infor', productController.update_infor)
+
+  router.put('/v1/product/update/image', productController.update_image)
 
   router.post('/v1/product/check/use', productController.checkProductUse)
 

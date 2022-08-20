@@ -19,6 +19,15 @@ module.exports = function (router) {
   //update status account
   router.put('/v1/auth/update/status', authController.update_statusAccount)
 
+  //update role account
+  router.put('/v1/auth/update/role', authController.update_role)
+
+  //get status account
+  router.post('/v1/auth/get/status', authController.get_status)
+
+   //get role account
+   router.post('/v1/auth/get/role', authController.get_role)
+
   //delete tk
   router.delete('/v1/auth/delete', authController.delete)
 

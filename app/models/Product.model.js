@@ -140,6 +140,29 @@ class Product {
                     result("Cập nhật thông tin thành công")
             })
     }
+
+    //update infor
+    static updateInfor(data, result) {
+        db.query("update sanpham set tensp = ?, gia = ?, soluong = ?, mota = ?, maloaisp = ?," +
+            "mahang = ?, manhacc = ?, isgood = ?, isnew = ? where masp = ?", [data.tensp, data.gia, data.soluong, data.mota,
+            data.maloaisp, data.mahang, data.manhacc, data.isgood, data.isnew, data.masp], function (err, Product) {
+                if (err)
+                    result(null)
+                else
+                    result("Cập nhật thông tin thành công")
+            })
+    }
+
+    //update image
+    static updateImage(data, result) {
+        db.query("update sanpham set hinhanh = ? where masp = ?", [data.hinhanh,data.masp], function (err, Product) {
+                if (err)
+                    result(null)
+                else
+                    result("Cập nhật thông tin thành công")
+            })
+    }
+
     //update amount
     static updateAmount(data, result) {
         db.query("update sanpham set soluong = ? where masp = ?", [data.soluong, data.masp], function (err, Product) {

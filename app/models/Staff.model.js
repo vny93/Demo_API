@@ -39,6 +39,37 @@ class Staff {
                 result(Staff[0])
         })
     }
+
+    //check staff use
+    static checkStaffUse(id, result) {
+        db.query("call check_staff_use(?)", id, function (err, Staff) {
+            if (err || Staff[0].length == 0)
+                result(null)
+            else
+                result(id)
+        })
+    }
+
+    //get by phone
+    static getByPhone(sdt, result) {
+        db.query("select * from nhanvien where sdt = ?", sdt, function (err, Staff) {
+            if (err || Staff.length == 0)
+                result(false)
+            else
+                result(Staff[0].sdt)
+        })
+    }
+
+    //get by email
+    static getByEmail(email, result) {
+        db.query("select * from nhanvien where email = ?", email, function (err, Staff) {
+            if (err || Staff.length == 0)
+                result(false)
+            else
+                result(Staff[0].email)
+        })
+    }
+
     //add tk
     static create(data, result) {
         db.query("insert into nhanvien set ?", data, function (err, Staff) {

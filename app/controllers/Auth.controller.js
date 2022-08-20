@@ -50,6 +50,31 @@ exports.detail = function (req, res) {
         }
     })
 }
+
+//get status 
+exports.get_status = function (req, res) {
+    Auth.getStatusById(req.body.tendangnhap, function (response) {
+        if(response){
+            res.send({ result: response.trangthai })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
+//get role 
+exports.get_role = function (req, res) {
+    Auth.getStatusById(req.body.tendangnhap, function (response) {
+        if(response){
+            res.send({ result: response.maquyen })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
 //check
 exports.check = function (req, res) {
     Auth.check(req.body, function (response) {
@@ -106,6 +131,20 @@ exports.update_statusAccount = function (req, res) {
     Auth.getById(req.body.tendangnhap, function (response) {
         if(response){
             Auth.updateStatus(req.body, function (response) {
+                res.send({ result: response })
+            })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
+//update role
+exports.update_role = function (req, res) {
+    Auth.getById(req.body.tendangnhap, function (response) {
+        if(response){
+            Auth.updateRole(req.body, function (response) {
                 res.send({ result: response })
             })
         }

@@ -19,7 +19,7 @@ module.exports = function (router) {
 
   //router.get('/v1/productType/list', productTypeController.get_list)
 
-  router.get('/v1/productType/detail', productTypeController.detail)
+  router.post('/v1/productType/detail', productTypeController.detail)
 
   router.post('/v1/productType/add', productTypeController.add)
 

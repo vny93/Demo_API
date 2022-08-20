@@ -126,33 +126,8 @@ exports.checkProductUse = function (req, res) {
 }
 
 
-
 exports.add = function (req, res) {
-    var imageUrl = null
-    if (!req.file) {
-        imageUrl = null
-    }
-    else{
-   // if(req.file.filename && req.file.filename.length > 0){
-        const serverName = "localhost"
-        const serverPort = 3000
-        imageUrl = `${serverName}:${serverPort}/v1/product/open_image?imageName=${req.file.filename}`
-    }
-
-    var data = {
-        masp: req.body.masp,
-        tensp: req.body.tensp,
-        gia: req.body.gia,
-        soluong : req.body.soluong,
-        mota: req.body.mota,
-        hinhanh: imageUrl,
-        maloaisp: req.body.maloaisp,
-        mahang : req.body.mahang,
-        manhacc: req.body.manhacc,
-        isgood : req.body.isgood,
-        isnew : req.body.isnew
-    }
-    Product.create(data, function (response) {
+    Product.create(req.body, function (response) {
         res.send({ result: response })
     })
 }
@@ -185,6 +160,33 @@ exports.update = function (req, res) {
                 isnew : req.body.isnew
             }
             Product.update(data, function (response) {
+                res.send({ result: response })
+            })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+//update infor
+exports.update_infor = function (req, res) {
+    Product.getById(req.body.masp, function (response) {
+        if(response){
+            Product.updateInfor(req.body, function (response) {
+                res.send({ result: response })
+            })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
+//update infor
+exports.update_image = function (req, res) {
+    Product.getById(req.body.masp, function (response) {
+        if(response){
+            Product.updateImage(req.body, function (response) {
                 res.send({ result: response })
             })
         }

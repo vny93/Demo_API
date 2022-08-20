@@ -41,6 +41,39 @@ exports.add = function (req, res) {
 }
 
 
+exports.getByPhone = function (req, res) {
+    Staff.getByPhone(req.body.sdt, function (response) {
+        if(response){
+            res.send({ result: response})
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
+exports.getByEmail = function (req, res) {
+    Staff.getByEmail(req.body.email, function (response) {
+        if(response){
+            res.send({ result: response })
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
+exports.checkStaffUse = function (req, res) {
+    Staff.checkStaffUse(req.body.manv, function (response) {
+        if (response) {
+            res.send({ result: response })
+        }
+        else {
+            res.status(404).json("not find")
+        }
+    })
+}
+
 exports.update = function (req, res) {
     Staff.getById(req.body.manv, function (response) {
         if(response){
