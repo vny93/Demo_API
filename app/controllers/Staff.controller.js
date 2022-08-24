@@ -40,6 +40,17 @@ exports.add = function (req, res) {
     })
 }
 
+exports.getShipper = function (req, res) {
+    Staff.getShipper(req.body.maquyen, function (response) {
+        if(response){
+            res.send({ result: response})
+        }
+        else{
+            res.status(404).json("not find")
+        }
+    })
+}
+
 
 exports.getByPhone = function (req, res) {
     Staff.getByPhone(req.body.sdt, function (response) {

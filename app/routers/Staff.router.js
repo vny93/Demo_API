@@ -20,4 +20,6 @@ module.exports = function(router){
   router.post('/v1/staff/findPhone',staffController.getByPhone)
 
   router.post('/v1/staff/findEmail',staffController.getByEmail)
+
+  router.post('/v1/staff/get/shipper', staffController.getShipper)
 }

@@ -40,6 +40,17 @@ class Staff {
         })
     }
 
+    //get shipper
+    static getShipper(id, result) {
+        db.query("call get_shipper(?)", id, function (err, res) {
+            if (err || res[0].length == 0)
+                result(res[0])
+            else
+                result(res[0])
+        })
+    }
+
+
     //check staff use
     static checkStaffUse(id, result) {
         db.query("call check_staff_use(?)", id, function (err, Staff) {
