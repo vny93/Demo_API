@@ -12,6 +12,7 @@ class Product {
         this.manhacc = Product.manhacc
         this.isgood = Product.isgood
         this.isnew = Product.isnew
+        this.khoiluong = Product.khoiluong
 
     }
     //get list 

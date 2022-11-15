@@ -15,6 +15,11 @@ class Cart {
         this.manvduyet = Cart.manvduyet
         this.manvgiao = Cart.manvgiao
         this.makh = Cart.makh
+        this.ptthanhtoan = Cart.ptthanhtoan
+        this.phigiao = Cart.phigiao
+        this.khoiluong = Cart.khoiluong
+        this.ttthanhtoan = Cart.ttthanhtoan
+        this.htvanchuyen = Cart.htvanchuyen
     }
     //get list
     static get_all(result) {
@@ -83,9 +88,25 @@ class Cart {
         const now = new Date()
         var date = dateFormat.format(now, 'YYYY-MM-DD HH:mm:ss')
         console.log(date)
+        console.log(data.hotennguoinhan)
+        console.log(data.diachinguoinhan)
+        console.log(data.sdtnguoinhan)
+        console.log(data.emailnguoinhan)
+        console.log(data.tongtien)
+        console.log(data.trangthai)
+        console.log(data.ngaydukien)
+        console.log(data.ptthanhtoan)
+        console.log(data.phigiao)
+        console.log(data.khoiluong)
+        console.log(data.ttthanhtoan)
+        console.log(data.htvanchuyen)
+        console.log(data.magh)
+
         db.query("update giohang set ngaydat = ?, hotennguoinhan = ?, diachinguoinhan = ?, sdtnguoinhan = ?, emailnguoinhan = ?," +
-            "tongtien = ?, trangthai = ?,ngaydukien = ? where magh = ?", [date, data.hotennguoinhan,
-            data.diachinguoinhan, data.sdtnguoinhan, data.emailnguoinhan, data.tongtien, data.trangthai, data.ngaydukien, data.magh], function (err, Cart) {
+            "tongtien = ?, trangthai = ?,ngaydukien = ?, ptthanhtoan = ?,"+
+            "phigiao = ?, khoiluong = ?, ttthanhtoan = ?, htvanchuyen = ? where magh = ?", [date, data.hotennguoinhan,
+            data.diachinguoinhan, data.sdtnguoinhan, data.emailnguoinhan, data.tongtien, data.trangthai, data.ngaydukien,
+            data.ptthanhtoan, data.phigiao, data.khoiluong, data.ttthanhtoan, data.htvanchuyen, data.magh], function (err, Cart) {
                 if (err)
                     result(null)
                 else
