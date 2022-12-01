@@ -103,7 +103,7 @@ class Cart {
         console.log(data.magh)
 
         db.query("update giohang set ngaydat = ?, hotennguoinhan = ?, diachinguoinhan = ?, sdtnguoinhan = ?, emailnguoinhan = ?," +
-            "tongtien = ?, trangthai = ?,ngaydukien = ?, ptthanhtoan = ?,"+
+            "tongtien = ?, trangthai = ?,ngaydukien = ?, ptthanhtoan = ?," +
             "phigiao = ?, khoiluong = ?, ttthanhtoan = ?, htvanchuyen = ? where magh = ?", [date, data.hotennguoinhan,
             data.diachinguoinhan, data.sdtnguoinhan, data.emailnguoinhan, data.tongtien, data.trangthai, data.ngaydukien,
             data.ptthanhtoan, data.phigiao, data.khoiluong, data.ttthanhtoan, data.htvanchuyen, data.magh], function (err, Cart) {
@@ -159,7 +159,7 @@ class Cart {
     //update status cart
     static adminUpdateStatus(data, result) {
         db.query("update giohang set " +
-            "trangthai = ?, manvduyet = ? where magh = ?", [data.trangthai, data.manvduyet,data.magh], function (err, Cart) {
+            "trangthai = ?, manvduyet = ? where magh = ?", [data.trangthai, data.manvduyet, data.magh], function (err, Cart) {
                 if (err)
                     result(null)
                 else
@@ -172,6 +172,17 @@ class Cart {
         db.query("update giohang set " +
             " trangthai = ?, ngaydukien = ? where magh = ?", [data.trangthai, data.ngaydukien,
             data.magh], function (err, Cart) {
+                if (err)
+                    result(null)
+                else
+                    result("Cập nhật thông tin thành công")
+            })
+    }
+
+    //user update cart status
+    static userUpdateStatus(data, result) {
+        db.query("update giohang set " +
+            " trangthai = ? where magh = ?", [data.trangthai,data.magh], function (err, Cart) {
                 if (err)
                     result(null)
                 else
